@@ -1,4 +1,4 @@
-package com.gelonghui.util;
+package com.quanwc.util;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -12,7 +12,7 @@ import java.util.Arrays;
  */
 public class CheckUtil {
 
-    private static final String token = "token_gelonghui";
+    private static final String token = "token_quanwc";
 
     public static boolean checkSignature(String signature, String timestamp, String nonce) {
 

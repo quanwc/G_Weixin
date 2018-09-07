@@ -1,4 +1,4 @@
-package com.gelonghui.entity;
+package com.quanwc.entity;
 
 /**
  * 文本消息

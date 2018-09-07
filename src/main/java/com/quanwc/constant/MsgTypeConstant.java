@@ -1,4 +1,4 @@
-package com.gelonghui.constant;
+package com.quanwc.constant;
 
 /**
  * Created by quanwenchao

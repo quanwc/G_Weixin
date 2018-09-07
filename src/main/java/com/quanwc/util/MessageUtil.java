@@ -1,17 +1,19 @@
-package com.gelonghui.util;
+package com.quanwc.util;
 
-import com.gelonghui.entity.TextMessage;
-import com.thoughtworks.xstream.XStream;
-import org.dom4j.Document;
-import org.dom4j.Element;
-import org.dom4j.io.SAXReader;
-
-import javax.servlet.http.HttpServletRequest;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.dom4j.Document;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+
+import com.quanwc.entity.TextMessage;
+import com.thoughtworks.xstream.XStream;
 
 /**
  * 消息的工具类

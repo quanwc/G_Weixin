@@ -1,4 +1,4 @@
-package com.gelonghui.G_Weixin;
+package com.gelonghui;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

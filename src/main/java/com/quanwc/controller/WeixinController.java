@@ -1,20 +1,18 @@
-package com.gelonghui.controller;
+package com.quanwc.controller;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.gelonghui.constant.MsgTypeConstant;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gelonghui.entity.TextMessage;
-import com.gelonghui.util.CheckUtil;
-import com.gelonghui.util.MessageUtil;
+import com.quanwc.constant.MsgTypeConstant;
+import com.quanwc.util.CheckUtil;
+import com.quanwc.util.MessageUtil;
 
 /**
  * Created by quanwenchao
