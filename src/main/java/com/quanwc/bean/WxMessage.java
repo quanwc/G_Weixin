@@ -1,12 +1,15 @@
 package com.quanwc.bean;
 
+import lombok.Data;
+
 /**
  * Weixin Bean
  * @author quanwenchao
  * @date 2018/8/18 18:50:13
  */
-//@data
+@Data
 public class WxMessage {
+
     /**
      * ToUserName
      */

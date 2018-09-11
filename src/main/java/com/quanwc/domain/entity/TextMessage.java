@@ -1,4 +1,4 @@
-package com.quanwc.entity;
+package com.quanwc.domain.entity;
 
 /**
  * 文本消息
