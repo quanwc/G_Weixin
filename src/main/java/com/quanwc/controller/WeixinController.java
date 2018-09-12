@@ -1,20 +1,14 @@
 package com.quanwc.controller;
 
-import java.io.IOException;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import com.quanwc.bean.WxMessage;
-import com.quanwc.config.WeixinConfig;
-import com.quanwc.util.StringUtils;
-import com.quanwc.util.XmlUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.quanwc.constant.MsgTypeConstant;
+import com.quanwc.bean.WxMessage;
+import com.quanwc.config.WeixinConfig;
+import com.quanwc.handler.MessageRouter;
+import com.quanwc.util.StringUtils;
 import com.quanwc.util.WeixinUtils;
+import com.quanwc.util.XmlUtils;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,6 +24,8 @@ public class WeixinController {
 
     @Autowired
     private WeixinConfig weixinConfig;
+    @Autowired
+    private MessageRouter messageRouter;
 
     /**
      * 校验消息是否来自微信服务器
@@ -79,10 +75,7 @@ public class WeixinController {
         }
 
         WxMessage wxMessage = XmlUtils.xmlToObject(WxMessage.class, requestBody);
-
-        String result = XmlUtils.objectToXml(null);
-        return result;
-
+        return XmlUtils.objectToXml(messageRouter.router(wxMessage));
     }
 
 }

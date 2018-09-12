@@ -2,12 +2,18 @@ package com.quanwc.bean;
 
 import lombok.Data;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * Weixin Bean
  * @author quanwenchao
  * @date 2018/8/18 18:50:13
  */
 @Data
+@XmlRootElement(name="xml")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class WxMessage {
 
     /**

@@ -11,7 +11,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.codec.digest.DigestUtils;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
@@ -61,14 +60,22 @@ public class WeixinUtils {
      */
     public static String textMessageToXml(TextMessage textMessage) {
         XStream xStream = new XStream();
-        xStream.alias("xml", TextMessage.class); // 将xml的根节点，转换为xml
+        // 将xml的根节点，转换为xml
+        xStream.alias("xml", TextMessage.class);
         return xStream.toXML(textMessage);
     }
 
 
-
+    /**
+     * 检验signature，验证消息的确来自微信服务器
+     * @param signature
+     * @param timestamp
+     * @param nonce
+     * @param token
+     * @return
+     */
     public static boolean checkSignature(String signature, String timestamp, String nonce, String token) {
-        String [] arr = new String[]{token, timestamp, nonce};
+        String [] arr = new String[]{"pinksend", timestamp, nonce};
         // 排序
         Arrays.sort(arr);
 
@@ -77,10 +84,8 @@ public class WeixinUtils {
         for (String str : arr) {
             sb.append(str);
         }
-        System.out.println(sb.toString());
         // sha1加密
         String sign = getSha1(sb.toString());
-        System.out.println(sign);
 
         // 将加密后的内容，与微信传过来的signature比较
         return sign.equals(signature);
