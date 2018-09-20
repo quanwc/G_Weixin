@@ -1,22 +1,9 @@
 package com.quanwc.util;
 
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.dom4j.Document;
-import org.dom4j.Element;
-import org.dom4j.io.SAXReader;
-
-import com.quanwc.domain.entity.TextMessage;
-import com.thoughtworks.xstream.XStream;
 
 /**
  * 消息的工具类
@@ -32,7 +19,7 @@ public class WeixinUtils {
      * @return
      * @throws Exception
      */
-    public static Map<String, String> xmlToMap(HttpServletRequest request) throws Exception{
+    /*public static Map<String, String> xmlToMap(HttpServletRequest request) throws Exception{
         Map<String,String> map = new HashMap<>();
 
         SAXReader reader = new SAXReader();
@@ -51,19 +38,19 @@ public class WeixinUtils {
         in.close();
 
         return map;
-    }
+    }*/
 
     /**
      * 将TextMessage对象转为xml
      * @param textMessage
      * @return
      */
-    public static String textMessageToXml(TextMessage textMessage) {
+    /*public static String textMessageToXml(TextMessage textMessage) {
         XStream xStream = new XStream();
         // 将xml的根节点，转换为xml
         xStream.alias("xml", TextMessage.class);
         return xStream.toXML(textMessage);
-    }
+    }*/
 
 
     /**
@@ -75,7 +62,7 @@ public class WeixinUtils {
      * @return
      */
     public static boolean checkSignature(String signature, String timestamp, String nonce, String token) {
-        String [] arr = new String[]{"pinksend", timestamp, nonce};
+        String [] arr = new String[]{token, timestamp, nonce};
         // 排序
         Arrays.sort(arr);
 
