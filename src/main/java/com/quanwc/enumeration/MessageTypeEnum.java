@@ -16,9 +16,9 @@ public enum MessageTypeEnum {
     FILE("file"),
 
     EVENT("event"),
-    EVENT_UNSUBSCRIBE("event:unsubscribe"),
-    EVENT_SUBSCRIBE("event:subscribe"),
-    EVENT_VIEW("event:VIEW");
+    UNSUBSCRIBE("unsubscribe"),
+    SUBSCRIBE("subscribe"),
+    VIEW("VIEW");
 
     private final String messageType;
 

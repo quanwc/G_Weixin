@@ -1,5 +1,6 @@
 package com.quanwc.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +19,18 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/user")
 public class UserController {
 
-    @GetMapping(value = "/test")
-    public String userInfo() {
-        return new Date() + "";
+    /**
+     * 测试接口
+     * @return
+     */
+    @GetMapping(value = "/health")
+    public String health() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        return sdf.format(date);
     }
+
+
 
 
 }

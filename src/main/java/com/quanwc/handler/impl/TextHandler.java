@@ -5,7 +5,7 @@ import com.quanwc.enumeration.MessageTypeEnum;
 import com.quanwc.handler.AbstractHandler;
 
 /**
- * 文本消息处理的Handler
+ * text Handler
  * @author quanwenchao
  * @date 2018/9/11 17:50:07
  */
@@ -15,7 +15,15 @@ public class TextHandler extends AbstractHandler {
     public WxMessage handle(WxMessage message) {
         String toUserName = message.getToUserName();
         String fromUserName = message.getFromUserName();
-        return initText(toUserName, fromUserName, "nihaowa");
+        String content = message.getContent();
+
+        WxMessage result = null;
+        if (content.contains("音乐")) {
+            result = initText(toUserName, fromUserName, musicReplyText());
+        } else {
+            result = initText(toUserName, fromUserName, "nihaowa");
+        }
+        return result;
     }
 
     /**
@@ -35,5 +43,15 @@ public class TextHandler extends AbstractHandler {
         wxMessage.setCreateTime(System.currentTimeMillis()/1000);
 
         return wxMessage;
+    }
+
+    /**
+     * music reply
+     * @return
+     */
+    private String musicReplyText() {
+        StringBuffer sb = new StringBuffer();
+        sb.append("Eason Chen");
+        return sb.toString();
     }
 }
