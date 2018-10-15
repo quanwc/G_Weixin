@@ -1,14 +1,24 @@
 package com.quanwc.mapper;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import com.quanwc.bean.Kiwi;
+
+@Mapper
 public interface KiwiMapper {
 
-    //int insert(Kiwi record);
-    //
-    //int insertSelective(Kiwi record);
-    //
-    //List<Kiwi> selectByExample(KiwiExample example);
-    //
-    //Kiwi selectByPrimaryKey(Integer id);
-    //
-    //int updateByPrimaryKey(Kiwi record);
+    /**
+     * 新增
+     * @param kiwi
+     * @return
+     */
+	Integer save(Kiwi kiwi);
+
+    /**
+     * 列表
+     * @return
+     */
+	List<Kiwi> list();
 }

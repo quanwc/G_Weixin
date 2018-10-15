@@ -1,10 +1,12 @@
 package com.quanwc.controller;
 
+import javax.validation.constraints.NotNull;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
 import com.quanwc.bean.Kiwi;
 import com.quanwc.service.KiwiService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 猕猴桃controller
@@ -15,20 +17,65 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("kiwi")
 public class KiwiController {
 
-    @Autowired
-    private KiwiService kiwiService;
+	@Autowired
+	private KiwiService kiwiService;
 
-    public String save(Kiwi kiwi) {
+	private void saveCheckKiwi(Kiwi kiwi) {
+		if (null == kiwi) {
+			throw new RuntimeException("parameter error");
+		}
+		if (kiwi.getFriendName() == null || kiwi.getFriendName().trim().isEmpty()) {
+			throw new RuntimeException("parameter error");
+		}
+		if (kiwi.getReceiverName() == null || kiwi.getReceiverName().trim().isEmpty()) {
+			throw new RuntimeException("parameter error");
+		}
+		if (kiwi.getReceiverPhone() == null || kiwi.getReceiverName().trim().isEmpty()) {
+			throw new RuntimeException("parameter error");
+		}
+		if (kiwi.getAddress() == null || kiwi.getAddress().trim().isEmpty()) {
+			throw new RuntimeException("parameter error");
+		}
+		if (kiwi.getProvince() == null || kiwi.getProvince().trim().isEmpty()) {
+			throw new RuntimeException("parameter error");
+		}
+		if (kiwi.getCity() == null || kiwi.getCity().trim().isEmpty()) {
+			throw new RuntimeException("parameter error");
+		}
+		if (kiwi.getStress() == null || kiwi.getStress().trim().isEmpty()) {
+			throw new RuntimeException("parameter error");
+		}
+		if (kiwi.getSize() == null) {
+			throw new RuntimeException("parameter error");
+		}
+		if (kiwi.getMoney() == null) {
+			throw new RuntimeException("parameter error");
+		}
+		if (kiwi.getCreateTimestamp() == null) {
+			throw new RuntimeException("parameter error");
+		}
 
-        if (null == kiwi) {
-            return "param is null";
-        }
-        kiwiService.save(kiwi);
-        return null;
-    }
+	}
 
-    public String listKiwi() {
-        return null;
-    }
+	/**
+	 * 新增
+	 * @param kiwi
+	 * @return
+	 */
+	@PostMapping(value = "save")
+	public String save(@NotNull @RequestBody Kiwi kiwi) {
+		saveCheckKiwi(kiwi);
+		Integer sum = kiwiService.save(kiwi);
+		return "true";
+	}
+
+	/**
+	 * 列表
+	 * @return
+	 */
+	@GetMapping(value = "list")
+	public Object listKiwi() {
+		return kiwiService.list();
+	}
 
 }

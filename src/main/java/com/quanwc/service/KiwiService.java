@@ -1,7 +1,12 @@
 package com.quanwc.service;
 
-import com.quanwc.bean.Kiwi;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.quanwc.bean.Kiwi;
+import com.quanwc.mapper.KiwiMapper;
 
 /**
  * kiwi的service
@@ -11,12 +16,26 @@ import org.springframework.stereotype.Service;
 @Service
 public class KiwiService {
 
+	@Autowired
+	private KiwiMapper kiwiMapper;
 
-    public Integer save(Kiwi kiwi) {
-        if (null == kiwi) {
-            return null;
-        }
+	/**
+	 * 新增
+	 * @param kiwi
+	 * @return
+	 */
+	public Integer save(Kiwi kiwi) {
+		if (null == kiwi) {
+			return null;
+		}
+		return kiwiMapper.save(kiwi);
+	}
 
-        return null;
-    }
+	/**
+	 * 列表
+	 * @return
+	 */
+	public List<Kiwi> list() {
+		return kiwiMapper.list();
+	}
 }
