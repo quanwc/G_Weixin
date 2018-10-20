@@ -1,15 +1,17 @@
 package com.quanwc.service;
 
+import org.apache.commons.httpclient.NameValuePair;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.quanwc.bean.Menu;
 import com.quanwc.bean.ResponseMessage;
 import com.quanwc.constant.WxConstant;
 import com.quanwc.http.HttpClient;
 import com.quanwc.http.Response;
+
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.httpclient.NameValuePair;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  * 自定义菜单service
@@ -30,10 +32,10 @@ public class MenuService {
 	private static final String REMOVE_MENU_URL = "https://api.weixin.qq.com/cgi-bin/menu/delete";
 	private static final String GET_CURRENT_SELF_MENU_INFO = "https://api.weixin.qq.com/cgi-bin/get_current_selfmenu_info";
 
-    /**
-     * 查询菜单
-     * @return
-     */
+	/**
+	 * 查询菜单
+	 * @return
+	 */
 	public String getMenu() {
 		String access_token = tokenService.getAccessToken();
 		Response response = httpClient.get(GET_MENU_URL,
@@ -46,33 +48,33 @@ public class MenuService {
 
 		// 判断菜单是否存在
 		try {
-			ResponseMessage responseMessage = objectMapper.readValue(responseBody,
-					ResponseMessage.class);
 			if (responseBody.contains("errcode")) {
+				ResponseMessage responseMessage = objectMapper.readValue(responseBody,
+						ResponseMessage.class);
 				if (null != responseMessage && WxConstant.CODE_MENU_NOT_EXIST
 						.equals(responseMessage.getErrcode())) {
 					log.info("menu does not exist!");
+					throw new RuntimeException("menu does not exist!");
 				}
 			}
 		}
 		catch (Exception e) {
 			log.error(e.getMessage());
-			throw new RuntimeException("menu does not exist!");
 		}
 		return responseBody;
 	}
 
-    /**
-     * 获取自定义菜单
-     * @return
-     */
-    public String getCurrentSelfMenu() {
-        String access_token = tokenService.getAccessToken();
-        Response response = httpClient.get(GET_CURRENT_SELF_MENU_INFO,
-                new NameValuePair[] { new NameValuePair("access_token", access_token) });
-        log.info(response.getBody());
-        return response.getBody();
-    }
+	/**
+	 * 获取自定义菜单
+	 * @return
+	 */
+	public String getCurrentSelfMenu() {
+		String access_token = tokenService.getAccessToken();
+		Response response = httpClient.get(GET_CURRENT_SELF_MENU_INFO,
+				new NameValuePair[] { new NameValuePair("access_token", access_token) });
+		log.info(response.getBody());
+		return response.getBody();
+	}
 
 	/**
 	 * 创建菜单
