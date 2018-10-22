@@ -9,7 +9,7 @@ import com.quanwc.bean.Kiwi;
 import com.quanwc.service.KiwiService;
 
 /**
- * 猕猴桃controller
+ * kiwi controller
  * @author quanwenchao
  * @date 2018/10/11 23:38:40
  */
@@ -43,6 +43,9 @@ public class KiwiController {
 			throw new RuntimeException("parameter error");
 		}
 		if (kiwi.getStress() == null || kiwi.getStress().trim().isEmpty()) {
+			throw new RuntimeException("parameter error");
+		}
+		if (kiwi.getExpress() == null || kiwi.getExpress().trim().isEmpty()) {
 			throw new RuntimeException("parameter error");
 		}
 		if (kiwi.getSize() == null) {

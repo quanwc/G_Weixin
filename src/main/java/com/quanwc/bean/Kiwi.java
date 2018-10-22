@@ -51,6 +51,11 @@ public class Kiwi {
 	private String stress;
 
 	/**
+	 * 快递
+	 */
+	private String express;
+
+	/**
 	 * 猕猴桃的规格（5斤、10斤）
 	 */
 	private Integer size;
