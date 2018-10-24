@@ -53,6 +53,10 @@ public class XmlUtils {
      * @return
      */
     public static <T> String objectToXml(T object) {
+        // 回复空串，微信服务器才不会对此作任何处理
+        if (null == object) {
+            return "";
+        }
 
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(object.getClass());

@@ -9,8 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.quanwc.bean.WxMessage;
 import com.quanwc.enumeration.MessageTypeEnum;
-import com.quanwc.handler.impl.SubscribeHandler;
-import com.quanwc.handler.impl.TextHandler;
+import com.quanwc.handler.impl.*;
 
 /**
  * message router
@@ -20,32 +19,38 @@ import com.quanwc.handler.impl.TextHandler;
 @Component
 public class MessageRouter {
 
-    private Map<String, IHandler> handlerMap = new HashMap<>();
+	private Map<String, IHandler> handlerMap = new HashMap<>();
 
-    @PostConstruct
-    public void init() {
-        handlerMap.put(MessageTypeEnum.TEXT.getMessageType(), new TextHandler());
-        handlerMap.put(MessageTypeEnum.SUBSCRIBE.getMessageType(), new SubscribeHandler());
-    }
+	@PostConstruct
+	public void init() {
+		handlerMap.put(MessageTypeEnum.TEXT.getMessageType(), new TextHandler());
+		handlerMap.put(MessageTypeEnum.SUBSCRIBE.getMessageType(),
+				new SubscribeHandler());
+		handlerMap.put(MessageTypeEnum.IMAGE.getMessageType(), new ImageHandler());
+		handlerMap.put(MessageTypeEnum.VOICE.getMessageType(), new VoiceHandler());
+		handlerMap.put(MessageTypeEnum.VIDEO.getMessageType(), new VideoHandler());
+	}
 
-    /**
-     * 根据msgType，router到Handler处理消息
-     * @param message
-     * @return
-     */
-    public WxMessage router(WxMessage message) {
-        String msgType = message.getMsgType();
-        if (null != handlerMap && handlerMap.containsKey(msgType)) {
-            if (MessageTypeEnum.EVENT.getMessageType().equals(msgType)) {
-                // event message
-                return handlerMap.get(message.getEvent()).handle(message);
-            } else {
-                // common message
-                return handlerMap.get(message.getMsgType()).handle(message);
-            }
-        }
+	/**
+	 * 根据msgType，router到Handler处理消息
+	 * @param message
+	 * @return
+	 */
+	public WxMessage router(WxMessage message) {
+		String msgType = message.getMsgType();
+		if (null != handlerMap && handlerMap.containsKey(msgType)) {
+			if (MessageTypeEnum.EVENT.getMessageType().equals(msgType)) {
+				// event message
+				return handlerMap.get(message.getEvent()).handle(message);
+			}
+			else {
+				// common message
+				return handlerMap.get(message.getMsgType()).handle(message);
+			}
+		}
 
-        throw new IllegalArgumentException("MsgType [" + message.getMsgType() + "]" + " unimplements!");
-    }
+		throw new IllegalArgumentException(
+				"MsgType [" + message.getMsgType() + "]" + " unimplements!");
+	}
 
 }

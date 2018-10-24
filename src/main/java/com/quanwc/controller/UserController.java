@@ -14,7 +14,9 @@ import com.quanwc.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 用户 Created by quanwenchao 2018/6/9 14:04:42
+ * user controller
+ * @author quanwenchao
+ * @date 2018/6/9 14:04:42
  */
 @Slf4j
 @RestController

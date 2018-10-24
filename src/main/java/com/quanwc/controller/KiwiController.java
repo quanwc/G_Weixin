@@ -19,7 +19,7 @@ public class KiwiController {
 
 	@Autowired
 	private KiwiService kiwiService;
-
+	
 	private void saveCheckKiwi(Kiwi kiwi) {
 		if (null == kiwi) {
 			throw new RuntimeException("parameter error");
@@ -57,7 +57,6 @@ public class KiwiController {
 		if (kiwi.getCreateTimestamp() == null) {
 			throw new RuntimeException("parameter error");
 		}
-
 	}
 
 	/**
