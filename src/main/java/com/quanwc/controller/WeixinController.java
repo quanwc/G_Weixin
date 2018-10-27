@@ -1,5 +1,6 @@
 package com.quanwc.controller;
 
+import com.quanwc.bean.WxEncryptMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -74,8 +75,25 @@ public class WeixinController {
             throw new IllegalArgumentException("Signature failed!");
         }
 
-        WxMessage wxMessage = XmlUtils.xmlToObject(WxMessage.class, requestBody);
-        return XmlUtils.objectToXml(messageRouter.router(wxMessage));
+        //
+        //WxMessage wxMessage = XmlUtils.xmlToObject(WxMessage.class, requestBody);
+        //return XmlUtils.objectToXml(messageRouter.router(wxMessage));
+        WxMessage wxMessage = null;
+        // 明文逻辑
+        if (null == encType) {
+            wxMessage = XmlUtils.xmlToObject(WxMessage.class, requestBody);
+            return XmlUtils.objectToXml(messageRouter.router(wxMessage));
+        } else if ("aes".equals(encType)) {
+            WxEncryptMessage encryptMessage = XmlUtils.xmlToObject(WxEncryptMessage.class , requestBody);
+
+            if (null != encryptMessage && null != encryptMessage.getEncrypt()) {
+
+            } else {
+                throw new IllegalArgumentException("AesException error!");
+            }
+
+        }
+
     }
 
 }
