@@ -91,7 +91,7 @@ public class TextHandler extends AbstractHandler {
 	private String defaultReplyText() {
 		StringBuffer sb = new StringBuffer();
 		sb.append("no match content!\n\n");
-		sb.append("try: id: music、read、basketball");
+		sb.append("try reply:  id、 music、read、basketball");
 		return sb.toString();
 	}
 }

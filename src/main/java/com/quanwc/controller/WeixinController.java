@@ -29,7 +29,6 @@ public class WeixinController {
 	private WeixinConfig weixinConfig;
 	@Autowired
 	private MessageRouter messageRouter;
-	@Autowired
 	private WXBizMsgCrypt wxBizMsgCrypt;
 
 	/**
