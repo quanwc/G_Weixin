@@ -4,13 +4,12 @@ import com.quanwc.bean.WxMessage;
 import com.quanwc.handler.AbstractHandler;
 
 /**
- * image handler
  * @author quanwenchao
- * @date 2018/9/22 17:03:58
+ * @date 2018/10/27 12:53:52
  */
-public class ImageHandler extends AbstractHandler {
+public class EventHandler extends AbstractHandler {
     @Override
     public WxMessage handle(WxMessage message) {
-        return null;
+        return message;
     }
 }

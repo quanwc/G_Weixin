@@ -5,7 +5,7 @@ import com.quanwc.enumeration.MessageTypeEnum;
 import com.quanwc.handler.AbstractHandler;
 
 /**
- * text Handler
+ * text handler
  * @author quanwenchao
  * @date 2018/9/11 17:50:07
  */
@@ -90,7 +90,7 @@ public class TextHandler extends AbstractHandler {
 	 */
 	private String defaultReplyText() {
 		StringBuffer sb = new StringBuffer();
-		sb.append("no match content!\n\n");
+		sb.append("no match content !\n\n");
 		sb.append("try reply:  id、 music、read、basketball");
 		return sb.toString();
 	}

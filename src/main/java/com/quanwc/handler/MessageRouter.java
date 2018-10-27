@@ -24,11 +24,15 @@ public class MessageRouter {
 	@PostConstruct
 	public void init() {
 		handlerMap.put(MessageTypeEnum.TEXT.getMessageType(), new TextHandler());
-		handlerMap.put(MessageTypeEnum.SUBSCRIBE.getMessageType(),
-				new SubscribeHandler());
+		handlerMap.put(MessageTypeEnum.EVENT.getMessageType(), new EventHandler());
 		handlerMap.put(MessageTypeEnum.IMAGE.getMessageType(), new ImageHandler());
 		handlerMap.put(MessageTypeEnum.VOICE.getMessageType(), new VoiceHandler());
 		handlerMap.put(MessageTypeEnum.VIDEO.getMessageType(), new VideoHandler());
+
+		handlerMap.put(MessageTypeEnum.EVENT_SUBSCRIBE.getMessageType(),
+				new EventSubscribeHandler());
+		handlerMap.put(MessageTypeEnum.EVENT_UNSUBSCRIBE.getMessageType(),
+				new EventUnsubscribeHandler());
 	}
 
 	/**
@@ -41,7 +45,8 @@ public class MessageRouter {
 		if (null != handlerMap && handlerMap.containsKey(msgType)) {
 			if (MessageTypeEnum.EVENT.getMessageType().equals(msgType)) {
 				// event message
-				return handlerMap.get(message.getEvent()).handle(message);
+				return handlerMap.get(message.getMsgType() + ":" + message.getEvent())
+						.handle(message);
 			}
 			else {
 				// common message
