@@ -31,7 +31,7 @@ public class TokenService {
 	@Autowired
 	private WeixinConfig weixinConfig;
 
-	private static final String TOKEN_URL = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential";
+	private static final String TOKEN_URL = "https://api.weixin.qq.com/cgi-bin/token";
 
 	private AccessToken accessToken;
 
