@@ -18,7 +18,10 @@ public class TextHandler extends AbstractHandler {
 		String content = message.getContent();
 
 		WxMessage result = null;
-		if (content.contains("音乐") || content.contains("music")) {
+		if (content.equals("id")) {
+			result = initText(toUserName, fromUserName, "openId: " + fromUserName);
+		}
+		else if (content.contains("音乐") || content.contains("music")) {
 			result = initText(toUserName, fromUserName, musicReplyText());
 		}
 		else if (content.contains("阅读") || content.contains("read")) {
@@ -77,7 +80,7 @@ public class TextHandler extends AbstractHandler {
 	 */
 	private String basketballReplyText() {
 		StringBuffer sb = new StringBuffer();
-		sb.append("http://pianke.me/pages/read/read.html");
+		sb.append("https://nba.hupu.com/");
 		return sb.toString();
 	}
 
@@ -87,8 +90,8 @@ public class TextHandler extends AbstractHandler {
 	 */
 	private String defaultReplyText() {
 		StringBuffer sb = new StringBuffer();
-		sb.append("nihaowa: no match content!\n");
-		sb.append("try: music、read、basketball");
+		sb.append("no match content!\n\n");
+		sb.append("try: id: music、read、basketball");
 		return sb.toString();
 	}
 }
