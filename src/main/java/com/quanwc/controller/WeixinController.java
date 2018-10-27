@@ -46,7 +46,7 @@ public class WeixinController {
 				timestamp, nonce, echostr);
 
 		if (StringUtils.isAnyBlank(signature, timestamp, nonce, echostr)) {
-			throw new IllegalArgumentException("Request param is errro");
+			throw new IllegalArgumentException("Request param is error!");
 		}
 
 		if (!WeixinUtils.checkSignature(signature, timestamp, nonce,
