@@ -76,7 +76,8 @@ public class KiwiController {
 	 * @return
 	 */
 	@GetMapping(value = "list")
-	public Object listKiwi() {
+	public Object listKiwi(@RequestParam("token") String token) {
+		System.out.println("token: " + token);
 		return kiwiService.list();
 	}
 

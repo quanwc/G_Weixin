@@ -23,7 +23,7 @@ public class HttpClient {
     private static final String CONTENT_TYPE = "application/json";
 
 
-    private org.apache.commons.httpclient.HttpClient httpClient;
+    private static org.apache.commons.httpclient.HttpClient httpClient;
 
     @PostConstruct
     public void initHttpClient() {
@@ -36,7 +36,7 @@ public class HttpClient {
      * @param params
      * @return
      */
-    public Response get(String url, NameValuePair[] params) {
+    public static Response get(String url, NameValuePair[] params) {
         Response response = new Response();
 
         GetMethod method = new GetMethod(url);
@@ -59,7 +59,7 @@ public class HttpClient {
      * post请求
      * @return
      */
-    public Response post(String url, NameValuePair[] params, String body) {
+    public static Response post(String url, NameValuePair[] params, String body) {
         PostMethod method = new PostMethod(url);
         method.setQueryString(params);
 
