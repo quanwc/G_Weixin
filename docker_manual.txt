@@ -1,0 +1,25 @@
+
+
+运行mysql镜像：docker run -p 3306:3306 --name mymysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql
+使用docker exec命令进入mysql容器: docker exec -it bob-mysql /bin/bash
+进入mysql：mysql -uroot -p、输入密码
+执行刷新权限的命令，让Navicat客服端可以连接：https://www.cnblogs.com/yy-cola/p/11226924.html
+此时mysql容器就已经运行起来了
+
+
+
+
+docker run -it --name openjdk-01 -d openjdk
+docker run -it  openjdk  /bin/bash
+
+
+
+
+编写Docker文件
+执行构建命令：docker build -t weixin-service .
+此时docker images，就可以看到weixin-service这个镜像了
+直接运行：docker run -d -p 80:80 --name my-weixin-service weixin-service
+
+查看容器的日志：docker logs my-weixin-service、docker logs -f -t --tail -f my-weixin-service
+
+
